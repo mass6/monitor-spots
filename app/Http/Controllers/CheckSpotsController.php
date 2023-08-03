@@ -12,9 +12,8 @@ class CheckSpotsController extends Controller
     public function __invoke()
     {
         $spotsAvailable = $this->getSpotsAvailable() ?? 'Error';
-        return response()->json(['message' => $spotsAvailable])
-            ->header('Content-Type', 'application/json')
-            ->header('Access-Control-Allow-Origin', '*');
+
+        return view('spots', compact('spotsAvailable'));
     }
 
     private function getSpotsAvailable()
