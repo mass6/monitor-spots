@@ -7,6 +7,6 @@
 <body>
     <h1>Spots Available</h1>
     <p>{{ $spotsAvailable }}</p>
-    <a href="https://ultrasignup.com/register.aspx?did=102258" target="_blank">Check Spots Available</a>
+    <a href="{{config('app.event_url')}}" target="_blank">Check Spots Available</a>
 </body>
 </html>

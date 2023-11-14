@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Static Email</title>
+    <title>Entrants updated for {{ config('app.name') }}</title>
 </head>
 <body>
     <h1>Hello,</h1>
     <p>{{ $messageBody }}</p>
-    <a href="https://ultrasignup.com/register.aspx?did=102258" target="_blank">Check Spots Available</a>
+    <a href="{{config('app.event_url')}}" target="_blank">View Entrants</a>
 </body>
 </html>

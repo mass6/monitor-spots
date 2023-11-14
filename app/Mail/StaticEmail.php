@@ -28,7 +28,7 @@ class StaticEmail extends Mailable
     {
         return new Envelope(
             from: new Address(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME')),
-            subject: 'Available spots left has changed!',
+            subject: sprintf('Entrants for the %s have changed.', config('app.event_name')),
         );
     }
 

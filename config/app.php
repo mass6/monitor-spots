@@ -17,6 +17,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'event_name' => env('EVENT_NAME', 'Skunk Ape 100'),
 
     /*
     |--------------------------------------------------------------------------
@@ -185,4 +186,6 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+
+    'event_url' => 'https://ultrasignup.com/entrants_event.aspx?did=109088',
 ];

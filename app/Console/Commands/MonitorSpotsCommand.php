@@ -15,16 +15,17 @@ class MonitorSpotsCommand extends Command
     protected $signature = 'spots:monitor';
     protected $description = 'Monitor spots available on ultrasignup.com';
 
-    private $url = 'https://ultrasignup.com/register.aspx?did=102258';
+    private string $url = '';
 
     public function handle()
     {
+        $this->url = config('app.event_url');
         $previousSpots = Redis::get('previous_spots', 'No data');
         $spotsAvailable = $this->getSpotsAvailable();
         if ($spotsAvailable !== null) {
             $this->info($spotsAvailable);
             if ($spotsAvailable !== $previousSpots) {
-                $this->notifyUser("Current spots now available: $spotsAvailable");
+                $this->notifyUser("Current number of entrants: $spotsAvailable");
                 Redis::set('previous_spots', $spotsAvailable);
             }
         } else {
@@ -39,7 +40,7 @@ class MonitorSpotsCommand extends Command
             $response = $client->get($this->url);
             $html = (string) $response->getBody();
             $crawler = new Crawler($html);
-            $spotsElement = $crawler->filter("span#ContentPlaceHolder1_PriceList_lblSpots_0");
+            $spotsElement = $crawler->filter("span#ContentPlaceHolder1_lblCount");
             if ($spotsElement->count() > 0) {
                 return trim($spotsElement->text());
             }
