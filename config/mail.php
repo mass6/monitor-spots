@@ -99,9 +99,11 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'sam.ciaramilaro@gmail.com'),
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
+
+    'notify-address' => env('MAIL_NOTIFY_ADDRESS', 'sam.ciaramilaro@gmail.com'),
 
     /*
     |--------------------------------------------------------------------------

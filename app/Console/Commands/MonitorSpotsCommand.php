@@ -56,7 +56,7 @@ class MonitorSpotsCommand extends Command
 
     private function notifyUser($message)
     {
-        $emailAddress = env('NOTIFY_ADDRESS'); // Replace this with your static email address
+        $emailAddress = config('mail.notify-address');
 
         try {
             Mail::to($emailAddress)->send(new StaticEmail($message));
