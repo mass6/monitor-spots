@@ -22,6 +22,8 @@ class MonitorSpotsCommand extends Command
         $this->url = config('app.event_url');
         $previousSpots = Redis::get('previous_spots', 'No data');
         $spotsAvailable = $this->getSpotsAvailable();
+        logger()->info('Current number of entrants: ' . $spotsAvailable);
+
         if ($spotsAvailable !== null) {
             $this->info($spotsAvailable);
             if ($spotsAvailable !== $previousSpots || config('app.force_update')) {
@@ -47,6 +49,7 @@ class MonitorSpotsCommand extends Command
             }
             return null;
         } catch (Exception $e) {
+            logger()->error('Failed to fetch spots information: ' . $e->getMessage());
             return null;
         }
     }
