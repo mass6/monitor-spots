@@ -62,6 +62,7 @@ class MonitorSpotsCommand extends Command
             Mail::to($emailAddress)->send(new StaticEmail($message));
             $this->info('Email sent successfully to ' . $emailAddress);
         } catch (Exception $e) {
+            logger()->error('Error sending email: ' . $e->getMessage());
             $this->error('Error sending email: ' . $e->getMessage());
         }
     }
