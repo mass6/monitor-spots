@@ -17,7 +17,11 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+
     'event_name' => env('EVENT_NAME', 'Skunk Ape 100'),
+    'event_url' => 'https://ultrasignup.com/entrants_event.aspx?did=109088',
+
+    'force_update' => env('FORCE_UPDATE', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -185,7 +189,4 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
-
-
-    'event_url' => 'https://ultrasignup.com/entrants_event.aspx?did=109088',
 ];

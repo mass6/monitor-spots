@@ -24,11 +24,12 @@ class MonitorSpotsCommand extends Command
         $spotsAvailable = $this->getSpotsAvailable();
         if ($spotsAvailable !== null) {
             $this->info($spotsAvailable);
-            if ($spotsAvailable !== $previousSpots) {
-                $this->notifyUser("Current number of entrants: $spotsAvailable");
+            if ($spotsAvailable !== $previousSpots || config('app.force_update')) {
                 Redis::set('previous_spots', $spotsAvailable);
+                $this->notifyUser("Current number of entrants: $spotsAvailable");
             }
         } else {
+            logger()->error('Failed to fetch spots information.');
             $this->error('Failed to fetch spots information.');
         }
     }
